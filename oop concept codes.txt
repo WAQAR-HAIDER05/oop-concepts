@@ -1,0 +1,339 @@
+// class and objects
+#include <iostream>
+using namespace std;
+
+class Car {
+public:
+    string make;
+    string model;
+
+    void startEngine() {
+        cout << make << " " << model << "'s engine is started." << endl;
+    }
+};
+
+int main() {
+    Car myCar;
+    myCar.make = "Toyota";
+    myCar.model = "Camry";
+    myCar.startEngine();
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////
+Encapsulation:
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    double balance;
+
+public:
+    BankAccount(double initialBalance) {
+        if (initialBalance >= 0) {
+            balance = initialBalance;
+        } else {
+            balance = 0;
+        }
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    double getBalance() {
+        return balance;
+    }
+};
+
+int main() {
+    BankAccount account(1000);
+    account.withdraw(500);
+    cout << "Account Balance: " << account.getBalance() << endl; // Output: 500
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////
+Inheritance:
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    string name;
+
+    Animal(string _name) : name(_name) {}
+
+    void speak() {
+        cout << name << " makes a sound." << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    Dog(string _name) : Animal(_name) {}
+
+    void speak() {
+        cout << name << " says Woof!" << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    Cat(string _name) : Animal(_name) {}
+
+    void speak() {
+        cout << name << " says Meow!" << endl;
+    }
+};
+
+int main() {
+    Dog myDog("Buddy");
+    Cat myCat("Whiskers");
+
+    myDog.speak(); // Output: Buddy says Woof!
+    myCat.speak(); // Output: Whiskers says Meow!
+
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////
+Polymorphism:
+#include <iostream>
+using namespace std;
+
+class Bird {
+public:
+    virtual void speak() {
+        cout << "Bird makes a sound." << endl;
+    }
+};
+
+class Parrot : public Bird {
+public:
+    void speak() override {
+        cout << "Parrot can talk!" << endl;
+    }
+};
+
+class Sparrow : public Bird {
+public:
+    void speak() override {
+        cout << "Sparrow chirps." << endl;
+    }
+};
+
+void birdSound(Bird* bird) {
+    bird->speak();
+}
+
+int main() {
+    Parrot myParrot;
+    Sparrow mySparrow;
+
+    birdSound(&myParrot); // Output: Parrot can talk!
+    birdSound(&mySparrow); // Output: Sparrow chirps.
+
+    return 0;
+}
+////////////////////////////////////////////////////////////////
+Association:
+#include <iostream>
+using namespace std;
+
+class Teacher {
+public:
+    void teach() {
+        cout << "Teacher teaches a student." << endl;
+    }
+};
+
+class Student {
+public:
+    void learn() {
+        cout << "Student learns from a teacher." << endl;
+    }
+};
+
+int main() {
+    Teacher t;
+    Student s;
+
+    t.teach();
+    s.learn();
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+Aggregation:
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Book {
+public:
+    Book(string title) : title(title) {}
+    string title;
+};
+
+class Library {
+public:
+    void addBook(Book book) {
+        books.push_back(book);
+    }
+
+private:
+    vector<Book> books;
+};
+
+int main() {
+    Library library;
+    Book book1("Book A");
+    Book book2("Book B");
+
+    library.addBook(book1);
+    library.addBook(book2);
+
+    return 0;
+}
+//////////////////////////////////////////////////////////////////////////////////////////
+Method Overloading:
+#include <iostream>
+using namespace std;
+
+class MyClass {
+public:
+    MyClass() {
+        cout << "Default constructor called." << endl;
+    }
+
+    MyClass(int value) {
+        cout << "Parameterized constructor called with value: " << value << endl;
+    }
+};
+
+int main() {
+    MyClass obj1;        // Calls default constructor
+    MyClass obj2(42);    // Calls parameterized constructor
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+Method Overriding:
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void speak() {
+        cout << "Animal makes a sound." << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void speak() override {
+        cout << "Dog says Woof!" << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    void speak() override {
+        cout << "Cat says Meow!" << endl;
+    }
+};
+
+int main() {
+    Animal* dog = new Dog();
+    Animal* cat = new Cat();
+
+    dog->speak();  // Calls Dog's speak method
+    cat->speak();  // Calls Cat's speak method
+
+    delete dog;
+    delete cat;
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void speak() {
+        cout << "Animal makes a sound." << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void speak() override {
+        cout << "Dog says Woof!" << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    void speak() override {
+        cout << "Cat says Meow!" << endl;
+    }
+};
+
+int main() {
+    Animal* dog = new Dog();
+    Animal* cat = new Cat();
+
+    dog->speak();  // Calls Dog's speak method
+    cat->speak();  // Calls Cat's speak method
+
+    delete dog;
+    delete cat;
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void speak() {
+        cout << "Animal makes a sound." << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void speak() override {
+        cout << "Dog says Woof!" << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    void speak() override {
+        cout << "Cat says Meow!" << endl;
+    }
+};
+
+int main() {
+    Animal* dog = new Dog();
+    Animal* cat = new Cat();
+
+    dog->speak();  // Calls Dog's speak method
+    cat->speak();  // Calls Cat's speak method
+
+    delete dog;
+    delete cat;
+
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////
